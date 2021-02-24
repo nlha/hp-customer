@@ -17,4 +17,7 @@ export default {
 .maintenance.change {
   margin-left: 300px;
 }
+.maintenance h1 {
+  margin: 2rem 0 4rem 0;
+}
 </style>

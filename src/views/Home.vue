@@ -27,6 +27,6 @@ export default {
   margin-left: 300px;
 }
 .home h1 {
-  margin: 2rem;
+  margin: 2rem 0 4rem 0;
 }
 </style>

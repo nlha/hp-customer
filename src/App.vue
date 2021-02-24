@@ -25,6 +25,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 .router-view {
   transition: margin-left .3s;

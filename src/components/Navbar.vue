@@ -67,7 +67,7 @@ export default {
   left: 0;
   background: black;
   color: #f6ecda;
-  height: 100vh;
+  height: 100%;
   padding: 1rem;
   font-size: 1.5rem;
   display: flex;
