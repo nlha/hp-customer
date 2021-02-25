@@ -23,13 +23,8 @@ export default {
     }
   },
   mounted() {
-    // this.showGrid();
     this.fetchData();
   },
-  created() {
-    // this.showGrid();
-  },
-  watch: {},
   methods: {
     getData(callback) {
       const request = new XMLHttpRequest();
@@ -51,46 +46,7 @@ export default {
         .then((res) => res.json())
         .then((data) => this.infocards = data)
         .catch(err => console.log(err.message))
-    },
-    showGrid() {
-      const infogrid = document.querySelector(".infogrid-container");
-
-      // this.getData((err, data) => {
-      //   console.log("callback fired");
-      //   if (err) {
-      //     console.log(err);
-      //   } else {
-      //     console.log(data);
-      //     Object.values(data).forEach((e) => {
-      //       infogrid.innerHTML += `
-      //         <InfoCard
-      //           infoName="${e.name}"
-      //           infoAddress="${e.address.city}"
-      //           infoPhone="${e.phone}"
-      //         ></InfoCard>
-      //       `;
-      //       console.log("innerHTML append");
-      //     });
-      //     console.log(infogrid);
-      //   }
-      // });
-
-      // fetch("https://jsonplaceholder.typicode.com/users")
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     Object.values(data).forEach((e) => {
-      //       infogrid.innerHTML += `
-      //         <InfoCard
-      //           infoName="${e.name}"
-      //           infoAddress="${e.address.city}"
-      //           infoPhone="${e.phone}"
-      //         ></InfoCard>
-      //       `;
-      //       console.log("innerHTML append");
-      //     });
-      //     console.log(infogrid);
-      //   });
-    },
+    }
   },
 };
 </script>
@@ -100,7 +56,10 @@ export default {
   width: 70vw;
   min-height: 70vh;
   background-color: #f6ecda;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-evenly;
+}
+.info-card {
 }
 </style>

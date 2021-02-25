@@ -1,7 +1,7 @@
 <template>
   <div class="infocard-wrap">
     <div class="infocard-container">
-      <div class="info-img"></div>
+      <div class="info-img">{{ shortened }}</div>
       <div class="info-name">{{ infoName }}</div>
       <div class="info-address">{{ infoAddress }}</div>
       <div class="info-phone">{{ infoPhone }}</div>
@@ -13,9 +13,13 @@
 export default {
   name: "InfoCard",
   props: ["infoName", "infoAddress", "infoPhone"],
+  data() {
+    return {
+      shortened: ""
+    }
+  },
   mounted() {
     this.shortNames(this.infoName);
-    console.log(this.infoName)
   },
   methods: {
     shortNames(e) {
@@ -23,8 +27,7 @@ export default {
         .split(" ")
         .map((word) => word.slice(0, 1))
         .join("");
-      let thumb = document.querySelector(".info-img");
-      thumb.innerText = short;
+      this.shortened = short;
     },
   },
 };
@@ -39,7 +42,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 250px;
+  height: 300px;
   background-color: white;
 }
 .info-img {
