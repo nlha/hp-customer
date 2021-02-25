@@ -15,6 +15,7 @@ export default {
   props: ["infoName", "infoAddress", "infoPhone"],
   mounted() {
     this.shortNames(this.infoName);
+    console.log(this.infoName)
   },
   methods: {
     shortNames(e) {

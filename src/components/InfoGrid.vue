@@ -1,11 +1,13 @@
 <template>
   <div class="infogrid-wrap">
     <div class="infogrid-container">
-      <InfoCard
-        infoName="Doe John"
-        infoAddress="Vungtau Vietnam"
-        infoPhone="+84 123456789"
-      />
+      <div class="infocard" v-for="card in infocards" :key="card.id">
+        <InfoCard
+          :infoName=card.name
+          :infoAddress=card.address.city
+          :infoPhone=card.phone
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -15,22 +17,79 @@ import InfoCard from "./InfoCard.vue";
 export default {
   name: "InfoGrid",
   components: { InfoCard },
-  mounted() {
-    this.getData();
+  data() {
+    return {
+      infocards: []
+    }
   },
+  mounted() {
+    // this.showGrid();
+    this.fetchData();
+  },
+  created() {
+    // this.showGrid();
+  },
+  watch: {},
   methods: {
-    getData() {
+    getData(callback) {
       const request = new XMLHttpRequest();
 
       request.addEventListener("readystatechange", () => {
-        if (request.readyState === 4) {
-          console.log(request.responseText);
+        if (request.readyState === 4 && request.status === 200) {
+          const data = JSON.parse(request.responseText);
+          callback(undefined, data);
+        } else if (request.readyState === 4) {
+          callback("could not fetch data", undefined);
         }
-        // console.log(request, request.readyState);
       });
 
       request.open("GET", "https://jsonplaceholder.typicode.com/users");
       request.send();
+    },
+    fetchData() {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) => res.json())
+        .then((data) => this.infocards = data)
+        .catch(err => console.log(err.message))
+    },
+    showGrid() {
+      const infogrid = document.querySelector(".infogrid-container");
+
+      // this.getData((err, data) => {
+      //   console.log("callback fired");
+      //   if (err) {
+      //     console.log(err);
+      //   } else {
+      //     console.log(data);
+      //     Object.values(data).forEach((e) => {
+      //       infogrid.innerHTML += `
+      //         <InfoCard
+      //           infoName="${e.name}"
+      //           infoAddress="${e.address.city}"
+      //           infoPhone="${e.phone}"
+      //         ></InfoCard>
+      //       `;
+      //       console.log("innerHTML append");
+      //     });
+      //     console.log(infogrid);
+      //   }
+      // });
+
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     Object.values(data).forEach((e) => {
+      //       infogrid.innerHTML += `
+      //         <InfoCard
+      //           infoName="${e.name}"
+      //           infoAddress="${e.address.city}"
+      //           infoPhone="${e.phone}"
+      //         ></InfoCard>
+      //       `;
+      //       console.log("innerHTML append");
+      //     });
+      //     console.log(infogrid);
+      //   });
     },
   },
 };
@@ -41,5 +100,7 @@ export default {
   width: 70vw;
   min-height: 70vh;
   background-color: #f6ecda;
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
