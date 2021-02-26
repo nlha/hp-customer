@@ -36,6 +36,11 @@ export default {
   width: 250px;
   height: 250px;
   background-color: white;
+  cursor: pointer;
+}
+.infocard-container:hover {
+  transform: scale(1.05);
+  transition: all 0.5s;
 }
 .info-img {
   color: #d7aa5b;
