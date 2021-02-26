@@ -1,17 +1,17 @@
 <template>
   <Navbar />
   <div class="router-view">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import Navbar from "./components/Navbar.vue";
 
 export default {
-  name: 'App',
-  components: { Navbar }
-}
+  name: "App",
+  components: { Navbar },
+};
 </script>
 
 <style>
@@ -28,7 +28,7 @@ export default {
   box-sizing: border-box;
 }
 .router-view {
-  transition: margin-left .3s;
+  transition: margin-left 0.3s;
   margin-left: 85px;
 }
 .router-view.change {

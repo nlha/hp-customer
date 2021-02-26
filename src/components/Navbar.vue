@@ -3,8 +3,6 @@
     <div class="navbar-container">
       <!-- on/off menu btn -->
       <div class="hamburger-menu" @click="toggleHamburger">
-        <!-- <div class="extend"><i class="fas fa-bars"></i></div>
-        <div class="minimize"><i class="fas fa-times-circle"></i></div> -->
         <div class="hamburger-bar bar1"></div>
         <div class="hamburger-bar bar2"></div>
         <div class="hamburger-bar bar3"></div>
@@ -45,9 +43,9 @@ export default {
       let menu = document.querySelector(".hamburger-menu");
       let bars = document.querySelectorAll(".hamburger-bar");
       let menuExtends = document.querySelectorAll(".menu-extend");
-      let routerView = document.querySelector('.router-view')
+      let routerView = document.querySelector(".router-view");
 
-      routerView.classList.toggle('change');
+      routerView.classList.toggle("change");
       menu.classList.toggle("change");
       bars.forEach((bar) => {
         bar.classList.toggle("change");

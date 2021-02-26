@@ -1,7 +1,7 @@
 <template>
   <div class="infogrid-wrap">
     <div class="infogrid-container">
-      <div class="infocard" v-for="card in infocards" :key="card.id">
+      <div class="infocard" @searching="searchInfo($event)" v-for="card in infocards" :key="card.id">
         <InfoCard
           :infoName="card.name"
           :infoAddress="card.address.city"
@@ -14,11 +14,12 @@
 
 <script>
 import InfoCard from "./InfoCard.vue";
-import { ref, reactive } from "vue";
+import SearchBar from './SearchBar.vue'
+import { ref, computed } from "vue";
 
 export default {
   name: "InfoGrid",
-  components: { InfoCard },
+  components: { InfoCard, SearchBar },
   setup() {
     let infocards = ref([]);
 
@@ -27,8 +28,13 @@ export default {
       .then((data) => (infocards.value = data))
       .catch((err) => console.log(err.message));
 
-    return { infocards };
-  }
+    const searchInfo = computed((e) => {
+      console.log('searchInfo triggered')
+      return infocards.value.filter(info => info.includes(e))
+    })
+
+    return { infocards, searchInfo };
+  },
 };
 </script>
 

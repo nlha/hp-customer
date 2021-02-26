@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: 'Maintenance'
-}
+  name: "Maintenance",
+};
 </script>
 
 <style>
 .maintenance {
-  transition: margin-left .3s;
+  transition: margin-left 0.3s;
 }
 .maintenance.change {
   margin-left: 300px;

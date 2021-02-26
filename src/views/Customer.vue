@@ -11,17 +11,17 @@
 </template>
 
 <script>
-import InfoGrid from '../components/InfoGrid.vue'
-import SearchBar from '../components/SearchBar.vue'
+import InfoGrid from "../components/InfoGrid.vue";
+import SearchBar from "../components/SearchBar.vue";
 
 export default {
-  components: { InfoGrid, SearchBar }
-}
+  components: { InfoGrid, SearchBar },
+};
 </script>
 
 <style>
 .customer {
-  transition: margin-left .3s;
+  transition: margin-left 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: center;

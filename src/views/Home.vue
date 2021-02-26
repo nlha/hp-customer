@@ -6,18 +6,17 @@
 </template>
 
 <script>
-import Login from '../components/Login.vue'
-
+import Login from "../components/Login.vue";
 
 export default {
-  name: 'Home',
-  components: { Login }
-}
+  name: "Home",
+  components: { Login },
+};
 </script>
 
 <style>
 .home {
-  transition: margin-left .3s;
+  transition: margin-left 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;

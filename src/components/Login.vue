@@ -2,18 +2,28 @@
   <div class="login-wrap">
     <div class="login-container">
       <div class="login-logo">
-        <img src="../assets/img/HP-logo.png" alt="HoangPhuc Autogate">
+        <img src="../assets/img/HP-logo.png" alt="HoangPhuc Autogate" />
       </div>
       <div class="login-form">
         <span>Login</span>
         <form action="" class="form-input">
           <label for="username"></label>
-          <input type="text" name="username" id="username" placeholder="Username">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
 
           <label for="password"></label>
-          <input type="password" name="password" id="password" placeholder="Password">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
 
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" />
         </form>
       </div>
     </div>
@@ -22,8 +32,8 @@
 
 <script>
 export default {
-  name: 'Login'
-}
+  name: "Login",
+};
 </script>
 
 <style scoped>
@@ -39,7 +49,7 @@ export default {
 .login-logo {
   align-self: center;
   color: #881d1d;
-  text-shadow: 0 0 1px #D7AA5B;
+  text-shadow: 0 0 1px #d7aa5b;
   font-weight: bold;
   font-size: 2rem;
   padding: 2rem;
@@ -63,7 +73,7 @@ export default {
   align-items: center;
 }
 .login-form span {
-  color: #D7AA5B;
+  color: #d7aa5b;
   font-size: 2rem;
 }
 .form-input {
@@ -77,19 +87,19 @@ export default {
   padding: 0.5rem;
   background-color: #881d1d;
   border: none;
-  border-bottom: 1px solid #B29576;
+  border-bottom: 1px solid #b29576;
   font-size: 1.5rem;
-  color: #B29576;
+  color: #b29576;
   outline: none;
 }
 ::placeholder {
-  color: #B29576;
+  color: #b29576;
 }
-.form-input input[type=submit] {
+.form-input input[type="submit"] {
   margin-top: 3rem;
   border: none;
   align-self: center;
-  background-color: #D7AA5B;
+  background-color: #d7aa5b;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
@@ -97,7 +107,7 @@ export default {
 }
 .form-input input:focus {
   border: none;
-  border-bottom: 1px solid #D7AA5B;
-  color: #D7AA5B;
+  border-bottom: 1px solid #d7aa5b;
+  color: #d7aa5b;
 }
 </style>
