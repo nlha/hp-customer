@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .login-container {
   margin: 2rem;
   background-color: rgba(243, 229, 206, 1);

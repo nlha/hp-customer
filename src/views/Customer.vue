@@ -1,6 +1,9 @@
 <template>
   <div id="customer" class="customer view">
     <h1>Customer List</h1>
+    <div class="searchbar">
+      <SearchBar />
+    </div>
     <div class="infogrid">
       <InfoGrid />
     </div>
@@ -9,9 +12,10 @@
 
 <script>
 import InfoGrid from '../components/InfoGrid.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 export default {
-  components: { InfoGrid }
+  components: { InfoGrid, SearchBar }
 }
 </script>
 
@@ -27,6 +31,6 @@ export default {
   margin-left: 300px;
 }
 .customer h1 {
-  margin: 2rem 0 4rem 0;
+  margin: 2rem 0 2rem 0;
 }
 </style>

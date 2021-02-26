@@ -1,7 +1,7 @@
 <template>
   <div class="infocard-wrap">
     <div class="infocard-container">
-      <div class="info-img">{{ shortened }}</div>
+      <div class="info-img">{{ shortName }}</div>
       <div class="info-name">{{ infoName }}</div>
       <div class="info-address">{{ infoAddress }}</div>
       <div class="info-phone">{{ infoPhone }}</div>
@@ -13,29 +13,20 @@
 export default {
   name: "InfoCard",
   props: ["infoName", "infoAddress", "infoPhone"],
-  data() {
-    return {
-      shortened: ""
-    }
-  },
-  mounted() {
-    this.shortNames(this.infoName);
-  },
-  methods: {
-    shortNames(e) {
-      let short = e
-        .split(" ")
-        .map((word) => word.slice(0, 1))
-        .join("");
-      this.shortened = short;
-    },
+  setup(props) {
+    let shortName = props.infoName
+      .split(" ")
+      .map((word) => word.slice(0, 1))
+      .join("");
+
+    return { shortName };
   },
 };
 </script>
 
 <style>
 .infocard-container {
-  padding: 2rem;
+  padding: 1rem;
   margin: 1.5rem;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -43,7 +34,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 250px;
-  height: 300px;
+  height: 250px;
   background-color: white;
 }
 .info-img {
