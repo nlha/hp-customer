@@ -38,7 +38,8 @@ export default {
   background-color: white;
 }
 .info-img {
-  background-color: #d7aa5b;
+  color: #d7aa5b;
+  background-color: #881d1d;
   border-radius: 50%;
   width: 70px;
   height: 70px;
