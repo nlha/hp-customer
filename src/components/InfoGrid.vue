@@ -1,7 +1,7 @@
 <template>
   <div class="infogrid-wrap">
     <div class="infogrid-container">
-      <div class="infocard" @searching="searchInfo($event)" v-for="card in infocards" :key="card.id">
+      <div class="infocard" v-for="card in infocards" :key="card.id">
         <InfoCard
           :infoName="card.name"
           :infoAddress="card.address.city"
@@ -14,13 +14,14 @@
 
 <script>
 import InfoCard from "./InfoCard.vue";
-import SearchBar from './SearchBar.vue'
-import { ref, computed } from "vue";
+import SearchBar from "./SearchBar.vue";
+import { ref, computed, watch } from "vue";
 
 export default {
   name: "InfoGrid",
   components: { InfoCard, SearchBar },
-  setup() {
+  props: { infoTyped: String },
+  setup(props) {
     let infocards = ref([]);
 
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -28,12 +29,18 @@ export default {
       .then((data) => (infocards.value = data))
       .catch((err) => console.log(err.message));
 
-    const searchInfo = computed((e) => {
-      console.log('searchInfo triggered')
-      return infocards.value.filter(info => info.includes(e))
+    //// get searched info from customer
+    let info = ref(props.infoTyped);
+    watch(info, () => {
+      console.log(info.value)
     })
 
-    return { infocards, searchInfo };
+    const infoFiltered = computed((info) => {
+      return infocards.value.filter((e) => e.name.includes(info.value));
+    });
+    console.log(infoFiltered.value)
+
+    return { infoFiltered, infocards };
   },
 };
 </script>

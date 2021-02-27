@@ -2,10 +2,10 @@
   <div id="customer" class="customer view">
     <h1>Customer List</h1>
     <div class="searchbar">
-      <SearchBar />
+      <SearchBar @searched="handleSearch($event)"/>
     </div>
     <div class="infogrid">
-      <InfoGrid />
+      <InfoGrid :infoTyped="searchInfo" />
     </div>
   </div>
 </template>
@@ -13,9 +13,20 @@
 <script>
 import InfoGrid from "../components/InfoGrid.vue";
 import SearchBar from "../components/SearchBar.vue";
+import { ref, reactive } from "vue";
 
 export default {
   components: { InfoGrid, SearchBar },
+  setup() {
+    let searchInfo = reactive("");
+
+    const handleSearch = (e) => {
+      searchInfo = e.value;
+      console.log(searchInfo)
+    };
+
+    return { searchInfo, handleSearch };
+  },
 };
 </script>
 

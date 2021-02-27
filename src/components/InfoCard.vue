@@ -12,7 +12,11 @@
 <script>
 export default {
   name: "InfoCard",
-  props: ["infoName", "infoAddress", "infoPhone"],
+  props: {
+    infoName: String,
+    infoAddress: String,
+    infoPhone: String,
+  },
   setup(props) {
     let shortName = props.infoName
       .split(" ")

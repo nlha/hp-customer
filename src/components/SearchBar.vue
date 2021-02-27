@@ -1,7 +1,12 @@
 <template>
   <div class="searchbar-wrap">
     <div class="searchbar-container">
-      <input ref="inp" type="text" placeholder="Search something here" v-model="search" />
+      <input
+        type="text"
+        placeholder="Search something here"
+        v-model="search"
+        @keyup="searching"
+      />
     </div>
   </div>
 </template>
@@ -11,15 +16,16 @@ import { ref, watch } from "vue";
 
 export default {
   name: "SearchBar",
-  setup() {
+  setup(props, { emit }) {
     const search = ref("");
-    const inp = ref(null)
+    const inp = ref(null);
 
-    watch(search, () => {
-      inp.$emit('searching', search)
-    });
+    //passing searched info to customer component
+    const searching = () => {
+      emit("searched", search);
+    };
 
-    return { search, inp };
+    return { search, searching };
   },
 };
 </script>
