@@ -5,27 +5,25 @@
         type="text"
         placeholder="Search something here"
         v-model="search"
-        @keyup="searching"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, watchEffect } from "vue";
 
 export default {
   name: "SearchBar",
   setup(props, { emit }) {
     const search = ref("");
-    const inp = ref(null);
 
     //passing searched info to customer component
-    const searching = () => {
-      emit("searched", search);
-    };
+    watch(search, (first) => {
+      emit('searched', first)
+    })
 
-    return { search, searching };
+    return { search };
   },
 };
 </script>
