@@ -21,7 +21,8 @@ export default {
     let shortName = props.infoName
       .split(" ")
       .map((word) => word.slice(0, 1))
-      .join("");
+      .join("")
+      .slice(-2);
 
     return { shortName };
   },
