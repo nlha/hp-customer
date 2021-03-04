@@ -5,7 +5,10 @@
       <SearchBar @searched="handleSearch($event)" />
     </div>
     <div class="infogrid">
-      <InfoGrid :showInfo="infoFiltered" />
+      <InfoGrid :showInfo="infoFiltered" @infoClicked="handleInfoClick($event)" />
+    </div>
+    <div class="infodetail" v-if="showProfile">
+      <InfoDetail :profile="profileDetail" @profileClose="showProfile = false"/>
     </div>
   </div>
 </template>
@@ -13,10 +16,11 @@
 <script>
 import InfoGrid from "../components/InfoGrid.vue";
 import SearchBar from "../components/SearchBar.vue";
+import InfoDetail from '../components/InfoDetail.vue';
 import { reactive, ref, watch, watchEffect, computed } from "vue";
 
 export default {
-  components: { InfoGrid, SearchBar },
+  components: { InfoGrid, SearchBar, InfoDetail },
   setup() {
     // fetch data
     let infocards = ref([]);
@@ -26,7 +30,7 @@ export default {
       .then((data) => (infocards.value = data))
       .catch((err) => console.log(err.message));
 
-    //get emit event from searchBar
+    // get emit event from searchBar
     let searchInfo = ref("");
 
     const handleSearch = (e) => {
@@ -42,7 +46,26 @@ export default {
       );
     });
 
-    return { handleSearch, infoFiltered };
+    // get emit event from infocard clicked and show profile
+    let profile = ref({})
+    let showProfile = ref(false)
+    const handleInfoClick = (e) => {
+      profile.value = e
+      showProfile.value = true
+    }
+
+    // get full profile info
+    let profileDetail = ref({})
+    watch(profile, (first) => {
+      infocards.value.forEach(info => {
+        if(info.name == first.infoName) {
+          profileDetail.value = info
+        }
+      })
+      //get object from proxy: JSON.parse(JSON.stringify(profileDetail.value))
+    })
+
+    return { handleSearch, infoFiltered, handleInfoClick, profileDetail, showProfile };
   },
 };
 </script>
@@ -60,5 +83,8 @@ export default {
 }
 .customer h1 {
   margin: 2rem 0 2rem 0;
+}
+.infodetail {
+  
 }
 </style>

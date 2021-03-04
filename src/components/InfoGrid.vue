@@ -6,6 +6,7 @@
           :infoName="info.name"
           :infoAddress="info.address.city"
           :infoPhone="info.phone"
+          @infoClicked="handleInfoClicked($event)"
         />
       </div>
     </div>
@@ -24,8 +25,11 @@ export default {
       type: Object,
     },
   },
-  setup(props) {
-    return {};
+  setup(props, { emit }) {
+    const handleInfoClicked = (e) => {
+      emit('infoClicked', e)
+    }
+    return { handleInfoClicked };
   },
 };
 </script>
@@ -38,7 +42,5 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-}
-.info-card {
 }
 </style>

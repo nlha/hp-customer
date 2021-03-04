@@ -1,6 +1,6 @@
 <template>
   <div class="infocard-wrap">
-    <div class="infocard-container">
+    <div class="infocard-container" @click="handleClick">
       <div class="info-img">{{ shortName }}</div>
       <div class="info-name">{{ infoName }}</div>
       <div class="info-address">{{ infoAddress }}</div>
@@ -17,14 +17,18 @@ export default {
     infoAddress: String,
     infoPhone: String,
   },
-  setup(props) {
+  setup(props, { emit }) {
     let shortName = props.infoName
       .split(" ")
       .map((word) => word.slice(0, 1))
       .join("")
       .slice(-2);
+    
+    const handleClick = () => {
+      emit('infoClicked', props)
+    }
 
-    return { shortName };
+    return { shortName, handleClick };
   },
 };
 </script>
@@ -58,6 +62,7 @@ export default {
   align-items: center;
   margin-bottom: 1rem;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 .info-name {
   margin-bottom: 1rem;
