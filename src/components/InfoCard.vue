@@ -1,11 +1,11 @@
 <template>
   <div class="infocard-wrap">
-    <div class="infocard-container" @click="handleClick">
-      <div class="info-img">{{ shortName }}</div>
-      <div class="info-name">{{ infoName }}</div>
-      <div class="info-address">{{ infoAddress }}</div>
-      <div class="info-phone">{{ infoPhone }}</div>
-    </div>
+      <div class="infocard-container" @click="handleClick">
+        <div class="info-img">{{ shortName }}</div>
+        <div class="info-name">{{ infoName }}</div>
+        <div class="info-address">{{ infoAddress }}</div>
+        <div class="info-phone">{{ infoPhone }}</div>
+      </div>
   </div>
 </template>
 

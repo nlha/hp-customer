@@ -1,7 +1,11 @@
 <template>
   <Navbar />
   <div class="router-view">
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="route" mode="out-in">
+        <component :is="Component"></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -33,5 +37,20 @@ export default {
 }
 .router-view.change {
   margin-left: 310px;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-50%);
+}
+.route-enter-active {
+  transition: all .3s ease-out;
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(50%);
+}
+.route-leave-active {
+  transition: all .3s ease-in;
 }
 </style>

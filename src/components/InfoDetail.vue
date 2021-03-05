@@ -28,28 +28,41 @@
           </div>
         </div>
         <div class="profile-content">
-          <div class="profile personal active">
-            <form>
-              <label for="">Name</label>
-              <input type="text" id="profile-name" :value="heroName" readonly />
-              <label for="">Address</label>
-              <input
-                type="text"
-                id="profile-address"
-                :value="heroAdd"
-                readonly
-              />
-              <label for="">Phone Number</label>
-              <input
-                type="text"
-                id="profile-phone"
-                :value="heroPhone"
-                readonly
-              />
-              <label for="">Age</label>
-              <input type="text" id="profile-age" value="" readonly />
-            </form>
-          </div>
+          <transition
+            appear
+            name="profile"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+          >
+            <div class="profile personal active">
+              <form>
+                <label for="">Name</label>
+                <input
+                  type="text"
+                  id="profile-name"
+                  :value="heroName"
+                  readonly
+                />
+                <label for="">Address</label>
+                <input
+                  type="text"
+                  id="profile-address"
+                  :value="heroAdd"
+                  readonly
+                />
+                <label for="">Phone Number</label>
+                <input
+                  type="text"
+                  id="profile-phone"
+                  :value="heroPhone"
+                  readonly
+                />
+                <label for="">Age</label>
+                <input type="text" id="profile-age" value="" readonly />
+              </form>
+            </div>
+          </transition>
           <div class="profile project"></div>
         </div>
       </div>
@@ -58,6 +71,8 @@
 </template>
 
 <script>
+import gsap from "gsap";
+
 export default {
   name: "InfoDetail",
   props: {
@@ -91,7 +106,37 @@ export default {
       });
     };
 
-    return { heroPhone, heroName, heroAdd, shortName, handleClose, toggleNav };
+    const beforeEnter = (el) => {
+      el.style.transform = "translateY(-100px)";
+      el.style.opacity = 0;
+    };
+    const enter = (el, done) => {
+      gsap.to(el, {
+        duration: 0.8,
+        opacity: 1,
+        y: 0,
+        onComplete: done,
+      });
+    };
+    const leave = (el) => {
+      gsap.to(el, {
+        duration: 0.3,
+        opacity: 0,
+        y: -100,
+      });
+    };
+
+    return {
+      heroPhone,
+      heroName,
+      heroAdd,
+      shortName,
+      handleClose,
+      toggleNav,
+      beforeEnter,
+      enter,
+      leave,
+    };
   },
 };
 </script>
