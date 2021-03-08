@@ -228,6 +228,7 @@ export default {
   width: 25%;
   padding: 5rem 2rem;
   border-right: 0.5rem dashed black;
+  font-size: 1.2rem;
 }
 .hero-thumb {
   color: #d7aa5b;
@@ -240,7 +241,7 @@ export default {
   align-items: center;
   margin-bottom: 1rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 .hero-name {
   margin-bottom: 1rem;
@@ -254,6 +255,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex-grow: 1;
 }
 .profile-nav {
   display: flex;
@@ -264,7 +266,7 @@ export default {
 .nav-project {
   margin: 1rem 0.5rem 1rem 3rem;
   padding: 0 2px 3px 2px;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   cursor: pointer;
   z-index: 1;
 }
@@ -280,7 +282,11 @@ export default {
 }
 
 .profile-content {
-  margin: 0 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  margin-left: 3rem;
 }
 .profile-content .profile {
   display: none;
@@ -292,13 +298,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 .profile form label {
   margin: 2rem 0 0.25rem 0;
 }
 .profile form input {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   width: 100%;
   outline: none;
   background: #f6ecda;
