@@ -34,6 +34,7 @@
             @before-enter="beforeEnter"
             @enter="enter"
             @leave="leave"
+            @after-leave="afterLeave"
           >
             <div class="profile personal active">
               <form>
@@ -63,7 +64,40 @@
               </form>
             </div>
           </transition>
-          <div class="profile project"></div>
+          <transition
+            appear
+            name="profile"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            @after-leave="afterLeave"
+          >
+            <div class="profile project">
+              <form>
+                <label for="">Type</label>
+                <input
+                  type="text"
+                  id="project-type"
+                  value="Autogate"
+                  readonly
+                />
+                <label for="">Date</label>
+                <input
+                  type="text"
+                  id="project-date"
+                  value="29-02-2019"
+                  readonly
+                />
+                <label for="">Last Maintenance</label>
+                <input
+                  type="text"
+                  id="project-last-maintain"
+                  value="29-02-2020"
+                  readonly
+                />
+              </form>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -96,6 +130,7 @@ export default {
     const toggleNav = (e) => {
       let nav = document.querySelectorAll(".profile");
       let active = document.querySelectorAll(`.${e}`);
+      let form = document.querySelector(`.${e} form`);
 
       nav.forEach((select) => {
         select.classList.remove("active");
@@ -104,6 +139,10 @@ export default {
       active.forEach((e) => {
         e.classList.toggle("active");
       });
+
+      beforeEnter(form);
+      enter(form);
+      leave(form);
     };
 
     const beforeEnter = (el) => {
@@ -118,12 +157,17 @@ export default {
         onComplete: done,
       });
     };
-    const leave = (el) => {
+    const leave = (el, done) => {
       gsap.to(el, {
         duration: 0.3,
         opacity: 0,
         y: -100,
+        onComplete: done,
       });
+    };
+    const afterLeave = (el) => {
+      el.style.opacity = 0;
+      el.style.transform = "translateY(-100px)";
     };
 
     return {
@@ -136,6 +180,7 @@ export default {
       beforeEnter,
       enter,
       leave,
+      afterLeave,
     };
   },
 };
@@ -221,6 +266,7 @@ export default {
   padding: 0 2px 3px 2px;
   font-size: 1.3rem;
   cursor: pointer;
+  z-index: 1;
 }
 .nav-personal.active,
 .nav-project.active {
@@ -237,12 +283,10 @@ export default {
   margin: 0 3rem;
 }
 .profile-content .profile {
-  visibility: hidden;
-  opacity: 0;
+  display: none;
 }
 .profile-content .profile.active {
-  visibility: visible;
-  opacity: 1;
+  display: block;
 }
 .profile form {
   display: flex;

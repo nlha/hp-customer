@@ -84,7 +84,4 @@ export default {
 .customer h1 {
   margin: 2rem 0 2rem 0;
 }
-.infodetail {
-  
-}
 </style>
